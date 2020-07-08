@@ -31,22 +31,16 @@ import sys
 import calendar
 from datetime import datetime
 
-date = input('Enter the date in "mm yyyy" format: ')
-list_date = date.split()
-
-
-def get_date(date):
-    c = calendar.TextCalendar()
-    year = datetime.now().year
-    if len(date) == 0:
-        month = datetime.now().month
-        return c.prmonth(year, month)
-    elif len(date) == 1:
-        return c.prmonth(year, int(date[0]))
-    elif len(date) == 2:
-        return c.prmonth(int(date[1]), int(date[0]))
-    else:
-        return 'Enter the month and year in "m y" format:'
-
-
-print(get_date(list_date))
+def Cal():
+  current_year = datetime.now().year
+  current_month = datetime.now().month
+  if len(sys.argv) == 1:
+    calendar.prmonth(current_year, current_month,)
+  elif len(sys.argv) == 2:
+    calendar.prmonth(current_year, int(sys.argv[1]))
+  elif len(sys.argv) == 3:
+    calendar.prmonth(int(sys.argv[2]), int(sys.argv[1]))
+  else:
+      print('Format is (14_cal.py MM YYYY)')
+  
+Cal()
